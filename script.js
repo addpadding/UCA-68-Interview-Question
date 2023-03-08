@@ -1,163 +1,111 @@
 console.log("script");
 
-
-// defference between == & ===
 {
-    var x = 5;
-    var y = 5;
+    var child1 = document.getElementById("child1")
+    var child2 = document.getElementById("child2")
+    var parent = document.getElementById("parent")
 
-    x == y // value = 5 => true
+    parent.addEventListener("click", function (e) {
+        console.log("parent");
+    })
 
-    x === y // value + type = number & number => true
 
-    var x = 5;
-    var y = "5";
+    child1.addEventListener("click", function (e) {
+        console.log("child1")
+        e.stopPropagation()
+    })
 
-    x == y // value = 5 => true
+    child2.addEventListener("click", function () {
+        console.log("child2")
+    }, true)
 
-    x === y // value + type = number & string => false
 }
 
-// defference between let & var
 {
-    var a = 1
-    let l1 = 1
-
-    var a; // hosting top page
-    console.log(x); // undefined
-    var x = 5
-
-    let l2; // not hosting
-    console.log(l2); // error
-    let l3 = 5
-
-
-    {
-        let x = 5;
+    var obj = {
+        name: "hamza"
     }
-    console.log(x); // error
 
-    function test() {
-        var a = 5;
+    Object.freeze(obj)
+    Object.seal(obj)
 
-        if (true) {
-            var t = 5 // var = function scope
-            let b = 6 // let = block scope
+    obj.name = "hamada"
+    obj.title = "front-end"
+
+    console.log(obj)
+}
+
+{
+    // IIFE
+    (function x() {
+        console.log("xssss");
+    })()
+}
+
+{
+    function data() {
+        return "code"
+    }
+
+    let t = data`test`
+    let t1 = data("test")
+    console.log(t);
+    console.log(t1);
+}
+
+{
+    let fun1 = function () {
+        return {
+            a: 1
         }
-
-        console.log(a); // 5
-        console.log(t); // 5
-        console.log(b); // error
-    }
-}
-
-// defference between const & let
-{
-    let a = 5
-    a = 6
-
-    const b = 6
-    // b = 7; // TypeError
-
-    const d = []
-    d.push(1)
-    d.push(2)
-}
-
-// ways to convert string to number
-{
-    var x = "12"
-    parseInt(x) // 12
-
-        + x
-
-    Number(x)
-}
-
-// defference BOM & DOM
-{
-    D = document // => HTML page
-
-    b = window // => Browsser
-}
-
-// defference null & undefined
-{
-    var x; // value => undefined
-
-    var x = 5;
-    x = null; // value => empty
-
-    console.log(typeof undefined); // = undefined
-    console.log(typeof null); // = object
-}
-
-// [] == []
-{
-    // [] = 1245 => false
-
-    // [] = 56987 => false
-}
-
-// function named &  fn expression
-{
-
-    x1() // x1
-    //x2() => // error
-
-    function x1() {
-        console.log("x1")
     }
 
-    var x2 = function () {
-        console.log("x2")
+    let fun2 = function () {
+        return;
+        {
+            a: 1
+        }
     }
 
+    console.log(fun1())
+    console.log(fun2())
 }
 
-// 1 > 2 > 3  &  1 < 2 < 3
 {
-    console.log(1 > 2 > 3); //  false > 3
-    console.log(0 > 3); // false
-
-    console.log(1 < 2 < 3); // true < 3
-    console.log(1 < 3); // true 
+    var C = {
+        a: function () {
+            console.log("a")
+            return this // C
+        },
+        b: function () {
+            console.log("b")
+            return this // C
+        },
+    }
+    C.a().b().a()
 }
 
-// (0 || 1) &  (1 || 2) &  (0 || 2) & (1 || 2)
 {
-    console.log((0 || 1)) // = 1
-    console.log((1 || 2)) // = 1
-
-    console.log((0 || 2)) // = 0
-    if (0) {
-        console.log(2);
-    }
-
-    console.log((1 || 2)) // = 2
-    if (1) {
-        console.log(2);
-    }
-
+    (function () {
+        console.log(1); // 1
+        setTimeout(function () { console.log(2), 1000 })
+        setTimeout(function () { console.log(3), 0 })
+        console.log(1); // 4
+    })()
+    // 1 4 3 2
 }
 
-// a = "b" , b = "a" c = {b:2}, d = {a: 5} c[a] d[b] c[b]
-
-var a = "b"
-var b = "a"
-var c = { b: 2 }
-var d = { a: 5 }
-
-console.log(c[a]); // => c ["b"] = 2
-
-var obj = {
-    a: 1,
-    b: 2
+{
+    console.log(1 + "2" + "2"); // 122
+    console.log(1 + +"2" + "2"); // 32
+    console.log(1 + -"1" + "2"); // 02
+    console.log(+"1" + "1" + "2"); // 122
+    console.log(+"A" - "B" + "2"); // NAN 2
+    console.log(+"A" - "B" + 2); // NAN
 }
 
-obj.a
-obj[a]
+{
+    // [] + []
 
-console.log(d[b]); // => d ["a"] = 5
-
-console.log(c[b]); // => c ["a"] = error
+    // "" + ""
+}
